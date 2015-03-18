@@ -1,0 +1,46 @@
+<div class="col-lg-4">
+    <div class="panel panel-default cluster-configuration">
+        <div class="panel-heading">
+            <h3 class="panel-title">HDFS Cluster Configuration</h3>
+        </div>
+        <div class="panel-body">
+            <form id="renderForm">
+                <div class="form-group">
+                    <label class="control-label">Folder path</label>
+                    <input type="text" name="hdfs.path" class="form-control" placeholder="/path/to/files" value='/user' />
+                    <span class="help-block hidden"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Visualization</label>
+                    <select id='vizType' name='vizType' class="form-control">
+                        <option selected value='sunburst'>Sunburst</option>
+                        <option value='partition'>Partition</option>
+                    </select>
+                    <span class="help-block hidden"></span>
+                </div>
+                <div class="form-group" style="margin-bottom: 0;">
+                    <button class="btn btn-sm btn-default" id="submit_button" type="submit">Render</button>
+                    <span class="help">&nbsp;&nbsp;<small id="counter"></small></span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- /.col-lg-4 -->
+<div class="col-lg-8">
+    <div class="panel panel-default cluster-configuration">
+        <div class="panel-heading">
+            <h3 class="panel-title">HDFS Cluster Files</h3>
+        </div>
+        <div class="panel-body">
+            <center>
+                <div id="chartContainer" class="chart"></div>
+            </center>
+        </div>
+        <!-- /.panelBody -->
+    </div>
+    <!-- /.panel -->
+</div>
+<!-- /.col-lg-8 -->
+<script src='scripts/tipsy_svg.js'></script>
+<script src="scripts/hdfs_d3.js"></script>

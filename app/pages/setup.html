@@ -1,0 +1,160 @@
+<form id="setupForm">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Setup</h1>
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#clusterPanel">Basic</a></h4>
+                    </div>
+                    <div id="clusterPanel" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="control-label">Username</label>
+                                <input type="text" name="user.name" class="form-control" placeholder="hue" value='' />
+                                <span class="help-block hidden"></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Hadoop Hostname</label>
+                                <input type="text" name="hadoop.host" class="form-control" placeholder="localhost" value='' />
+                                <span class="help-block hidden"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.collapsable panel -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#hdfsPanel">HDFS</a></h4>
+                    </div>
+                    <div id="hdfsPanel" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="control-label">Namenode Host</label>
+                                <input type="text" name="hdfs.namenode.host" class="form-control" value='' />
+                                <span class="help-block hidden"></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Namenode Port</label>
+                                <input type="text" name="hdfs.namenode.port" class="form-control"   value='' />
+                                <span class="help-block hidden"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.collapsable panel -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#hivePanel">Hive</a></h4>
+                    </div>
+                    <div id="hivePanel" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="control-label">Web HCat Host</label>
+                                <input type="text" name="hive.webhcat.host" class="form-control" placeholder="localhost" value='' />
+                                <span class="help-block hidden"></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Web HCat Port</label>
+                                <input type="text" name="hive.webhcat.port" class="form-control" placeholder="50111" value='' />
+                                <span class="help-block hidden"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.collapsable panel -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#yarnPanel">Yarn</a></h4>
+                    </div>
+                    <div id="yarnPanel" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="control-label">????? Host</label>
+                                <input type="text" name="yarn.host" class="form-control" placeholder="localhost" value='' />
+                                <span class="help-block hidden"></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">???? Port</label>
+                                <input type="text" name="yarn.port" class="form-control" placeholder="50111" value='' />
+                                <span class="help-block hidden"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.collapsable panel -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#hBasePanel">hBase</a></h4>
+                    </div>
+                    <div id="hBasePanel" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="control-label">???? Host</label>
+                                <input type="text" name="hBase.host" class="form-control" placeholder="localhost" value='' />
+                                <span class="help-block hidden"></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">??? Port</label>
+                                <input type="text" name="hBase.port" class="form-control" placeholder="50111" value='' />
+                                <span class="help-block hidden"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.collapsable panel -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#kafkaPanel">Kafka</a></h4>
+                    </div>
+                    <div id="kafkaPanel" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="control-label">???? Host</label>
+                                <input type="text" name="kafka.host" class="form-control" placeholder="localhost" value='' />
+                                <span class="help-block hidden"></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">??? Port</label>
+                                <input type="text" name="kafka.port" class="form-control" placeholder="50111" value='' />
+                                <span class="help-block hidden"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.collapsable panel -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#stormPanel">Storm</a></h4>
+                    </div>
+                    <div id="stormPanel" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="control-label">???? Host</label>
+                                <input type="text" name="storm.host" class="form-control" placeholder="localhost" value='' />
+                                <span class="help-block hidden"></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">??? Port</label>
+                                <input type="text" name="storm.port" class="form-control" placeholder="50111" value='' />
+                                <span class="help-block hidden"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.collapsable panel -->
+            </div>
+            <!-- /.panel-group -->
+        </div>
+        <!-- /.col-md-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-md-12">
+            <button class="btn btn-primary" id="setup_submit_button" type="submit" style="float: right">Save</button>
+        </div>
+        <!-- /.col-md-12 -->
+    </div>
+    <!-- /.row -->
+</form>
+<script src="scripts/setup.js"></script>
