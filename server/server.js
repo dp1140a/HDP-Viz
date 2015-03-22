@@ -1,17 +1,25 @@
 /* jshint strict: false */
+console.log(process.cwd());
+console.log(__dirname);
+global.rootRequire = function(name) {
+    return require(process.cwd() + '/node_modules/' + name);
+}
+
 const Hapi = require('hapi'); //http://hapijs.com/api
 const rp = require('request-promise'); //https://www.npmjs.com/package/request-promise
+const log = rootRequire('nodeLogger/nodeLogger.js');
+const properties = require('properties'); //https://github.com/gagle/node-properties
 //const Q = require('q'); //https://github.com/kriskowal/q
 //const _ = require('underscore'); //http://underscorejs.org/
 //const async = require('async'); //https://github.com/caolan/async
-const log = require('nodeLogger');
 //const fs = require('fs');
-const properties = require('properties'); //https://github.com/gagle/node-properties
+
 /***********************
     Server Setup
 ***********************/
+var logLevel = 'INFO';
 log.init({
-    logLevel: 'DEBUG'
+    logLevel: logLevel
 });
 
 const propOpts = {
@@ -22,12 +30,13 @@ const propOpts = {
     include: true
 };
 
-var props = {
+var config = {
     'server': {
+        'host': 'localhost',
         'port': 9001
     }
 };
-
+log.info(log.getConfig());
 properties.parse(__dirname + '/server.properties', propOpts, function(error, obj) {
     if (error) {
         log.error('Could not load properties. ' + __dirname + '/server.properties. Please check the server.properties');
@@ -35,25 +44,26 @@ properties.parse(__dirname + '/server.properties', propOpts, function(error, obj
         log.error(obj);
         //process.exit(1);
     }
-    props = obj;
-    log.debug(props);
+    config = obj;
+    if (typeof obj.loglevel !== undefined && obj.logLevel !== logLevel) {
+        log.warn('Setting loglevel to "' + obj.logLevel + '"');
+        logLevel = obj.logLevel;
+        log.init({
+            logLevel: logLevel
+        });  
+    }
+    log.info('Log Level set to ' + log.getLogLevel());
+    log.debug('Current Config: ' + JSON.stringify(config));
 });
 
-var PORT = props.server.port;
-if (process.argv[2] !== undefined) {
-    log.warn('Setting PORT to ' + process.argv[2]);
-    PORT = process.argv[2];
-}
-
-log.info(PORT);
 const server = new Hapi.Server();
 server.connection({
-    host: 'localhost',
-    address: 'localhost',
-    port: PORT
+    host: config.server.host,
+    address: config.server.host,
+    port: config.server.port
 });
 
-log.info(server.info);
+log.info('Server Info: ' + JSON.stringify(server.info));
 log.info('Current Dir Name: ' + __dirname);
 log.info('Current Process Working Directory: ' + process.cwd());
 
@@ -63,8 +73,8 @@ log.info('Current Process Working Directory: ' + process.cwd());
 ***********************/
 
 /*
-*   Static Route
-*/
+ *   Static Route
+ */
 server.route({
     method: 'GET',
     path: '/{param*}',
@@ -80,7 +90,7 @@ server.route({
     method: 'GET',
     path: '/setup',
     handler: function(request, reply) {
-        return reply(props).type('application/json');
+        return reply(config).type('application/json');
     }
 });
 
@@ -89,7 +99,7 @@ server.route({
     path: '/setup',
     handler: function(request, reply) {
         log.debug(request.payload);
-        props = request.payload;
+        config = request.payload;
         return reply({
             'statusCode': 201,
             'message': 'SAVED'
@@ -238,6 +248,6 @@ server.route({
     Server Start
 ***********************/
 server.start(function() {
-    log.info('Server running at:', server.info.uri);
+    log.info('Server running at ' + server.info.uri);
 });
 module.exports = server;

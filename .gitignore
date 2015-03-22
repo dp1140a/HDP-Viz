@@ -1,4 +1,7 @@
+scratch
 node_modules
 dist
 .tmp
+.yo-rc.json
+.editorconfig
 **/bower_components

@@ -36,8 +36,9 @@
                 root = data.tree;
 
             //d3.select('#chartContainer').append('button').text('Back To Top').on('click', console.log('hello'));
-
-            if ($('#vizType option:selected').text().toLowerCase() === 'sunburst') {
+            console.log($('#vizType option:selected').val().toLowerCase() === 'sunburst');
+            if ($('#vizType option:selected').val().toLowerCase() === 'sunburst') {
+                console.log('doing sunburst');
                 sunburstLayout(root);
             } else {
                 treemapLayout(root);

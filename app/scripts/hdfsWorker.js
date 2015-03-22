@@ -106,8 +106,8 @@
     };
 
     self.onmessage = function(e) {
-        console.log(e.data['hdfs.namenode.host']);
-        console.log(e.data['hdfs.namenode.port']);
+        //console.log(e.data['hdfs.namenode.host']);
+        //console.log(e.data['hdfs.namenode.port']);
         var baseURL = e.data['hdfs.namenode.host'] + ':' + e.data['hdfs.namenode.port'] + '/webhdfs/v1',
             calculator = new HDFSCalculator({
                 baseURL: baseURL

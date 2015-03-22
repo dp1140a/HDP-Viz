@@ -19,8 +19,11 @@ module.exports = function(grunt) {
     // Configurable paths
     var config = {
         app: 'app',
+        bower: 'app/bower_components',
         server: 'server',
-        dist: 'dist'
+        dist: 'dist',
+        distApp: 'dist/app',
+        distServer: 'dist/server'
     };
 
     grunt.verbose;
@@ -136,8 +139,9 @@ module.exports = function(grunt) {
                     dot: true,
                     src: [
                         '.tmp',
-                        '<%= config.dist %>/*',
-                        '!<%= config.dist %>/.git*'
+                        '<%= config.dist %>/**',
+                        '!<%= config.dist %>/.git*',
+                        '<%= config.dist %>'
                     ]
                 }]
             },
@@ -216,22 +220,22 @@ module.exports = function(grunt) {
         // additional tasks can operate on them
         useminPrepare: {
             options: {
-                dest: '<%= config.dist %>'
+                dest: '<%= config.distApp %>'
             },
-            html: '<%= config.app %>/index.html'
+            html: ['<%= config.app %>/index.html', '<%= config.app %>/{,*/}*.html']
         },
 
         // Performs rewrites based on rev and the useminPrepare configuration
         usemin: {
             options: {
                 assetsDirs: [
-                    '<%= config.dist %>',
-                    '<%= config.dist %>/images',
-                    '<%= config.dist %>/styles'
+                    '<%= config.distApp %>',
+                    '<%= config.distApp %>/images',
+                    '<%= config.distApp %>/styles'
                 ]
             },
-            html: ['<%= config.dist %>/{,*/}*.html'],
-            css: ['<%= config.dist %>/styles/{,*/}*.css']
+            html: ['<%= config.distApp %>/{,*/}*.html'],
+            css: ['<%= config.distApp %>/styles/{,*/}*.css']
         },
 
         // The following *-min tasks produce minified files in the dist folder
@@ -241,7 +245,7 @@ module.exports = function(grunt) {
                     expand: true,
                     cwd: '<%= config.app %>/images',
                     src: '{,*/}*.{gif,jpeg,jpg,png}',
-                    dest: '<%= config.dist %>/images'
+                    dest: '<%= config.distApp %>/images'
                 }]
             }
         },
@@ -252,7 +256,7 @@ module.exports = function(grunt) {
                     expand: true,
                     cwd: '<%= config.app %>/images',
                     src: '{,*/}*.svg',
-                    dest: '<%= config.dist %>/images'
+                    dest: '<%= config.distApp %>/images'
                 }]
             }
         },
@@ -260,6 +264,7 @@ module.exports = function(grunt) {
         htmlmin: {
             dist: {
                 options: {
+                    removeComments: true,
                     collapseBooleanAttributes: true,
                     collapseWhitespace: true,
                     conservativeCollapse: true,
@@ -273,9 +278,21 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: '<%= config.dist %>',
-                    src: '{,*/}*.html',
+                    src: '**/*.html',
                     dest: '<%= config.dist %>'
                 }]
+            }
+        },
+        uglify: {
+            options: {
+                report: 'min'
+            },
+            dist: {
+                files: {
+                    '<%= config.distApp %>/scripts/hdfsWorker.js': [
+                        '<%= config.app %>/scripts/hdfsWorker.js'
+                    ]
+                }
             }
         },
 
@@ -312,7 +329,7 @@ module.exports = function(grunt) {
                     expand: true,
                     dot: true,
                     cwd: '<%= config.app %>',
-                    dest: '<%= config.dist %>',
+                    dest: '<%= config.distApp %>',
                     src: [
                         '*.{ico,png,gif,txt}',
                         'images/{,*/}*.webp',
@@ -320,14 +337,25 @@ module.exports = function(grunt) {
                         'styles/fonts/{,*/}*.*'
                     ]
                 }, {
-                    src: 'node_modules/apache-server-configs/dist/.htaccess',
-                    dest: '<%= config.dist %>/.htaccess'
+                    src: '<%= config.server %>/**',
+                    dest: '<%= config.dist %>/'
                 }, {
+                    src: 'package.json',
+                    dest: '<%= config.dist %>/'
+                }, {
+                    //for bootstrap fonts
                     expand: true,
                     dot: true,
-                    cwd: 'bower_components/bootstrap/dist',
-                    src: 'fonts/*',
-                    dest: '<%= config.dist %>'
+                    cwd: '<%= config.bower %>/bootstrap/dist',
+                    src: ['fonts/*.*'],
+                    dest: '<%= config.distApp %>'
+                }, {
+                    //for font-awesome
+                    expand: true,
+                    dot: true,
+                    cwd: '<%= config.bower %>/font-awesome',
+                    src: ['fonts/*.*'],
+                    dest: '<%= config.distApp %>'
                 }]
             },
             styles: {
