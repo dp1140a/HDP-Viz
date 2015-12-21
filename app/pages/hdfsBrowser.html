@@ -1,0 +1,127 @@
+<div class="col-lg-12">
+  <div class="panel panel-default" id="hdfsBrowserPanel">
+    <div class="panel-heading">
+      <h3 class="panel-title">HDFS Browser</h3>
+    </div>
+    <div class="panel-body">
+      <div class="breadcrumb">
+        <h4 class="i-am-in pull-left">
+          <i class="fa fa-folder fa-lg"></i>
+          <span id="curPath" class="">
+            <a href="#" class="dir-name" path="/">/</a>
+          </span>
+        </h4>
+      </div>
+      <table id="hdfsBrowserTable" class="table table-hover compact">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Name</th>
+            <th>Size</th>
+            <th>Owner</th>
+            <th>Group</th>
+            <th>Permission</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div id="hdfsFileContentsContainer">
+  <div class="col-lg-2">
+    <div class="panel panel-default" id="fileInfoPanel">
+      <div class="panel-heading">
+        <h3 class="panel-title">File Info</h3>
+      </div>
+      <div class="panel-body" id="fileMetaDataDiv">
+        <script id="metadataTmpl" type="text/x-jsrender">
+          <label>Last Modified:</label>
+          <br/>
+          <span class="fileMetadata">{{:lastModified}}</span>
+          <br/>
+          <label>Size:</label>
+          <br/>
+          <span class="fileMetadata" rawSize="{{:rawSize}}">{{:size}}</span>
+          <br/>
+          <label>Permissions:</label>
+          <br/>
+          <span class="fileMetadata">{{:permissions}}</span>
+          <br/>
+          <label>Checksum:</label>
+          <br/>
+          <span class="fileMetadata">{{:checksum}}</span>
+          <br/>
+          <label>HDFS Attributes:</label>
+          <br/>
+          <span class="fileMetadata">{{for xAttrs}}{{:name}}: {{:value}}{{/for}}</span>
+          <br/>
+          <br/>
+        </script>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-10">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">File Contents</h3>
+      </div>
+      <div class="panel-body">
+        <ul class="nav nav-tabs" role="tablist" id="fileContentTabs">
+          <li role="presentation" class="active"><a href="#fileTextTab" aria-controls="fileTextTab" role="tab" data-toggle="tab">Text</a></li>
+          <li role="presentation"><a href="#fileBinaryTab" aria-controls="fileBinaryTab" role="tab" data-toggle="tab">Binary</a></li>
+          <li role="presentation"><a href="#fileSchemaTab" aria-controls="fileSchemaTab" role="tab" data-toggle="tab">Schema</a></li>
+        </ul>
+        <div class="tab-content">
+          <!-- fileTextTab -->
+          <div role="tabpanel" class="tab-pane active" id="fileTextTab">
+            <ul class="pagination fileContentsPagination">
+              <li class="first-block prev disabled"><a href="javascript:void(0);" data-bind="click: firstBlock">First Block</a></li>
+              <li class="previous-block disabled"><a href="javascript:void(0);" data-bind="click: previousBlock">Previous Block</a></li>
+              <li class="next-block disabled"><a href="javascript:void(0);" data-bind="click: nextBlock">Next Block</a></li>
+              <li class="last-block next disabled"><a href="javascript:void(0);" data-bind="click: lastBlock">Last Block</a></li>
+            </ul>
+            <div class="form-inline row pull-right fileContentsPagination" style="margin-right:10px;">
+              Viewing Bytes:
+              <input type="text" name="begin" value="1" size="8" class="form-control input-sm">
+              </span> -
+              <input type="text" name="end" value="215" size="8" class="form-control input-sm"> of
+              <span>292</span> (4096 B block size)
+            </div>
+            <div id="fileTextContents">Text Content</div>
+          </div>
+          <!-- /fileTextTab -->
+          <!-- fileBinaryTab -->
+          <div role="tabpanel" class="tab-pane" id="fileBinaryTab">
+            <div id="fileBinaryPagination">
+              <ul class="pagination fileContentsPagination">
+                <li class="first-block prev disabled"><a href="javascript:void(0);" data-bind="click: firstBlock">First Block</a></li>
+                <li class="previous-block disabled"><a href="javascript:void(0);" data-bind="click: previousBlock">Previous Block</a></li>
+                <li class="next-block disabled"><a href="javascript:void(0);" data-bind="click: nextBlock">Next Block</a></li>
+                <li class="last-block next disabled"><a href="javascript:void(0);" data-bind="click: lastBlock">Last Block</a></li>
+              </ul>
+              <div class="form-inline row pull-right fileContentsPagination" style="margin-right:10px;">
+                Viewing Bytes:
+                <input type="text" name="begin" value="1" size="8" class="form-control input-sm">
+                </span> -
+                <input type="text" name="end" value="215" size="8" class="form-control input-sm"> of
+                <span>292</span> (4096B block size)
+              </div>
+            </div>
+            <div id="fileBinaryContents">Binary Content</div>
+          </div>
+          <!-- /fileBinaryTab -->
+          <!-- fileSchemaTab -->
+          <div role="tabpanel" class="tab-pane" id="fileSchemaTab">Avro schema goes here</div>
+          <!-- /fileTextTab -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.col-lg-4 -->
+<!-- build:js(app) scripts/hdfsBrowser.js -->
+<script src="scripts/hexViewer.js"></script>
+<script src="scripts/hdfsBrowser.js"></script>
+
+<!-- endbuild -->

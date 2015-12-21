@@ -158,11 +158,13 @@ if (!dbDropdown) {
         formData.hiveDB = $(this).val();
         dbDropdown.selected = $(this).val();
         $.get('/hive/database/tables', formData, function(tables) {
+          console.log(tables);
             tObj = tables.tables.map(function(table) {
                 return {
                     'name': table
                 };
             });
+            console.log(tObj);
             var hiveTable = createDataTable(tObj);
             $('.dataTable_wrapper').show();
         });

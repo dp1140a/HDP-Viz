@@ -1,0 +1,18 @@
+<script id="template" type="x-tmpl-mustache">
+<div class="file-name allow-open">
+  <div>
+    <span>
+      <a>
+        <strong>
+          {{fileName}}
+        </strong>
+      </a>
+    </span>
+  </div>
+  <span class="help-block mod-time allow-open">
+    <small class="allow-open">
+      Updated: {{modDate}}
+    </small>
+  </span>
+</div>
+</script>

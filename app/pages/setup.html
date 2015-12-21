@@ -16,7 +16,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Hadoop Hostname</label>
-                                <input type="text" name="hadoop.host" class="form-control" placeholder="localhost" value='' />
+                                <input type="text" name="host" class="form-control" placeholder="localhost" value='' />
                                 <span class="help-block hidden"></span>
                             </div>
                         </div>
@@ -62,7 +62,9 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- /.collapsable panel -->
+                <!--
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#yarnPanel">Yarn</a></h4>
@@ -82,7 +84,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- /.collapsable panel -->
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#hBasePanel">hBase</a></h4>
@@ -102,7 +103,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- /.collapsable panel -->
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#kafkaPanel">Kafka</a></h4>
@@ -122,7 +122,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- /.collapsable panel -->
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#stormPanel">Storm</a></h4>
@@ -142,7 +141,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- /.collapsable panel -->
+                -->
             </div>
             <!-- /.panel-group -->
         </div>
@@ -157,6 +156,30 @@
     </div>
     <!-- /.row -->
 </form>
+<!-- /.form -->
+<!-- .modal Div -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Confirm</h4>
+      </div>
+      <div class="modal-body">
+        Do you want to change the host for:
+        <ul>
+            <li>Namenode Host
+            <li>Web HCat Host
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-success" id="confirmChangeHostBtn">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.modal Div -->
 <!-- build:js(app) scripts/setup.js -->
 <script src="scripts/setup.js"></script>
 <!-- endbuild -->

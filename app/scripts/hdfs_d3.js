@@ -34,11 +34,12 @@
 
             var data = event.data,
                 root = data.tree;
+                //console.log(data);
 
             //d3.select('#chartContainer').append('button').text('Back To Top').on('click', console.log('hello'));
-            console.log($('#vizType option:selected').val().toLowerCase() === 'sunburst');
+            //console.log($('#vizType option:selected').val().toLowerCase() === 'sunburst');
             if ($('#vizType option:selected').val().toLowerCase() === 'sunburst') {
-                console.log('doing sunburst');
+                //console.log('doing sunburst');
                 sunburstLayout(root);
             } else {
                 treemapLayout(root);
@@ -69,14 +70,12 @@
 
         var formData = {};
         var curConf = HADOOPOPTS.getConf();
-        console.log(curConf);
+        //console.log(curConf);
         $(this).serializeArray().map(function(x) {
             formData[x.name] = x.value;
             formData['hdfs.namenode.host'] = curConf.hdfs.namenode.host;
             formData['hdfs.namenode.port'] = curConf.hdfs.namenode.port;
         });
-
-        //console.log(formData);
 
         hdfsWorker.postMessage(formData);
     });
@@ -297,7 +296,7 @@
                 return 'translate(' + d.x + ',' + d.y + ')';
             })
             .on('click', function(d) {
-                console.log(d);
+                //console.log(d);
                 return zoom(node === d.parent ? root : d.parent);
             });
 
@@ -356,7 +355,7 @@
         **/
 
         function zoom(d) {
-            console.log(d);
+            //console.log(d);
             var kx = w / d.dx,
                 ky = h / d.dy;
             x.domain([d.x, d.x + d.dx]);

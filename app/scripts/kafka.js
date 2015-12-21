@@ -1,4 +1,4 @@
 /* jshint strict: false */
 (function(){
-	console.log('hbase.js');
+	console.log('kafka.js');
 })();

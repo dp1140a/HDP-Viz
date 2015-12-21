@@ -31,6 +31,13 @@ path {
     stroke: #fff;
     fill-rule: evenodd;
 }
+
+code {
+    display: inline-block;
+    width: 100%;
+    word-wrap: break-word;
+}
+
 #resultLoading {
     background-color: rgba(255, 255, 255, 0.85);
     width: 100%;
@@ -65,4 +72,71 @@ td.details-control {
 }
 tr.shown td.details-control {
     background: url('/images/details_close.png') no-repeat center center;
+}
+
+.file-name {
+  margin-top: -5px;
+  margin-bottom: -5px;
+}
+
+.breadcrumb {
+  height: 41px;
+  padding: 5px 10px;
+  border-radius: 0px;
+  border: 1px solid #DDDDDD;
+  margin-bottom: 20px;
+}
+
+#hdfsBrowserTable td {
+    padding-top: 8px !important;
+    padding-bottom: 5px !important;
+}
+
+.fileContentsPagination{
+    margin-top:20px;
+    margin-bottom: 0px;
+}
+
+.fileMetadata {
+    margin-left: 2em;
+    margin-bottom: 5px;
+    word-wrap: break-word;
+}
+
+
+.hexView {
+    font-family: monospace;
+    background-color: #FFF;
+    border-collapse: collapse;
+    border: 1px solid grey;
+    margin-left: 16px;
+    margin-top: 20px;
+}
+
+.hexViewOffset {
+    color: #0000FF;
+    border-right: 1px solid grey;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.hexViewCode{
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.hexViewBytes {
+    background: #F2F2F2;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.hexViewHead {
+    border-bottom: 1px solid grey;
+    color: #0000FF;
+}
+
+pre[class*="language-"] {
+    overflow: hidden !important;
+	max-height: 100% !important;
 }
