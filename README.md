@@ -15,5 +15,5 @@ chmod +x install.sh
 ```
 2. Start the server with <br>
 ```sh
-node server/server.js`
+node server/server.js
 ```
