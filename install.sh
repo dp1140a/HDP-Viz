@@ -13,7 +13,7 @@ make install
 
 node --version
 
-cd -
+cd ~/HDP-Viz
 echo "Running npm installs"
 npm install grunt --save-dev
 npm install -g grunt-cli 
