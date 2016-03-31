@@ -13,6 +13,7 @@ make install
 
 node --version
 
+cd -
 echo "Running npm installs"
 npm install grunt --save-dev
 npm install -g grunt-cli 
